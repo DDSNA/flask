@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import os.path
 from datetime import datetime
@@ -23,7 +24,7 @@ engine = create_engine(connection_string, echo=True)
 
 
 # logging
-# logging.basicConfig()
+logging.basicConfig()
 
 
 # logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
