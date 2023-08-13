@@ -12,4 +12,4 @@ EXPOSE 8080
 
 CMD [ "python", "app.py" ]
 
-CMD waitress-serve --host 127.0.0.1 --port=8080  app:app
+CMD +waitress-serve --host 0.0.0.0 --port=8080  app:app
