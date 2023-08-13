@@ -5,7 +5,7 @@ import os.path
 from datetime import datetime
 
 import requests
-from flask import Flask, render_template, current_app
+from flask import Flask, render_template, current_app, redirect
 from sqlalchemy import create_engine, insert, MetaData, Table
 
 # security import
@@ -17,11 +17,9 @@ app.config.from_object(env_config)
 # actual security
 
 
-
 # only creating this here because of security reasons
 connection_string = "mysql+mysqldb://pythonapp:Pythonsisaorma2023@containers-us-west-174.railway.app:7822/railway"
 engine = create_engine(connection_string, echo=True)
-
 
 # logging
 logging.basicConfig()
@@ -112,6 +110,11 @@ def call_db_and_fuzz():
     conn.close()
 
     return thedata
+
+
+@app.route('/static/')
+def static_redirect():
+    return redirect('/', code=302)
 
 
 if __name__ == '__main__':
