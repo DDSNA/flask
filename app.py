@@ -1,5 +1,4 @@
 import json
-import logging
 import os
 import os.path
 from datetime import datetime
@@ -24,7 +23,7 @@ engine = create_engine(connection_string, echo=True)
 
 
 # logging
-#logging.basicConfig()
+# logging.basicConfig()
 
 
 # logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
@@ -73,22 +72,22 @@ def call_db_and_fuzz():
     thedata = json.loads(data)
     print(response.status_code)
 
-    #def save_folder_location_printer():
-        #local_folder = os.path.join(current_app.root_path)
-        #print(local_folder)
-        #return local_folder
+    def save_folder_location_printer():
+        local_folder = os.path.join(current_app.root_path)
+        print(local_folder)
+        return local_folder
 
-    # save_folder_location_printer()
-    # current_time = datetime.utcnow()
-    # file_name = r"%s/flaskr/temp-data/jsons/" % save_folder_location_printer() + current_time.strftime(
-    #     '%d-%m-%Y-%H-%M-%S.json')
-    # with open(file_name, 'w') as fp:
-    #     fp.write(data)
-    #     print('created', file_name)
-    # with open(file_name, "r") as fr:
-    #     read_test = fr.read()
-    #     print(read_test)
-    #     print('reading: ', file_name)
+    save_folder_location_printer()
+    current_time = datetime.utcnow()
+    file_name = r"%s/flaskr/temp-data/jsons/" % save_folder_location_printer() + current_time.strftime(
+        '%d-%m-%Y-%H-%M-%S.json')
+    with open(file_name, 'w') as fp:
+        fp.write(data)
+        print('created', file_name)
+    with open(file_name, "r") as fr:
+        read_test = fr.read()
+        print(read_test)
+        print('reading: ', file_name)
 
     # PHIND
     meta = MetaData()
@@ -101,6 +100,7 @@ def call_db_and_fuzz():
         try:
             conn.execute(upload_json)
             conn.commit()
+            print(read_test)
         except Exception as e:
             print("An error occurred during database insertion:", e)
             import traceback
