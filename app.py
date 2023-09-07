@@ -6,9 +6,11 @@ from datetime import datetime
 
 import requests
 from flask import Flask, render_template, current_app, redirect, jsonify
-from flask_caching import Cache
+import flask_caching
 from sqlalchemy import create_engine, insert, MetaData, Table, select
 from sqlalchemy.orm import sessionmaker
+
+from flaskr.database_callers import historical_call
 
 # security import
 
@@ -25,7 +27,7 @@ config = {
 }
 
 app.config.from_mapping(config)
-cache = Cache(app)
+cache = flask_caching.Cache(app)
 
 
 # only creating this here because of security reasons
@@ -128,33 +130,15 @@ def call_db_and_fuzz():
     return thedata
 
 
-@app.route('/historical_table')
-@cache.cached(timeout=60)
+@app.route('/historical_table', methods=['GET'])
+@cache.cached(timeout=600)
 def show_historical_jsons():
-    connection_string_view = "mysql+mysqldb://frontend_tabledisplay:MareParolaMare98@containers-us-west-174.railway.app:7822/restricted_schema"
-    engine_2 = create_engine(connection_string_view, echo=True)
-    metadata = MetaData()
-    Session = sessionmaker(bind=engine_2)
-    session = Session()
-    view_table = Table("json_table_backup", metadata, autoload_with=engine_2)
-    with engine_2.connect() as conn_2:
-        get_view_data = select(view_table)
-        print(get_view_data)
-        try:
-            _results = session.execute(get_view_data)
-            _rows = _results.fetchall()
-            _results_dictionary = [{'data': json.dumps(row[0]), 'timestamp': row[1]} for row in _rows]
-            conn_2.close()
-            try:
-                render_template('historical_datapage.html')
-            except Exception as e:
-                return ('Got this error lol:', e)
-        except Exception as e:
-            print("Whoa! Error! This is th error itself: ", e)
-            import traceback
-            traceback.print_exc()
-            conn_2.close()
-        return jsonify(_results_dictionary)
+    try:
+        historical_data = historical_call()
+        print(historical_data)
+        return render_template('historical_datapage.html', data=historical_data)
+    except Exception as e:
+        print('Got this error lol:', e)
 
 
 

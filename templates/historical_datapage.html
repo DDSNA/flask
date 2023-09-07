@@ -3,7 +3,23 @@
     <title>Historical JSON table</title>
 </head>
 <body>
-
+<table border="solid">
+    <thead>
+        <tr>
+            <th>Index no.</th>
+            <th>Timestamp</th>
+            <th>Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+            <tr>
+                <td>{{ row.index }}</td>
+                <td>{{ row.timestamp }}</td>
+                <td>{{ row.data }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 </body>
 </html>
-
