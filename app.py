@@ -56,7 +56,7 @@ def index():
 
 @app.route('/secret')
 def secret_key():
-    __secret_key = app.config.get("SECRET KEY")
+    __secret_key = app.config.get('SECRET_KEY')
     return f"The configured secret key is {__secret_key}."
 
 
