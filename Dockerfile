@@ -8,10 +8,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-ARG SECRETS_FILE=secrets.txt
-RUN while IFS='=' read -r key value; do \
-    export "$key"="$value"; \
-done < "$SECRETS_FILE"
+ENV SECRET_KEY $SECRET_KEY
 
 EXPOSE 8080
 
