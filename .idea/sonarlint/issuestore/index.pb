@@ -16,3 +16,11 @@ B
 requirements.txt,1\9\19359a61ae2446b51b549167b014da2fcf265768
 6
 app.py,1\3\13cce7fd076299c81b4986166f3d822791c9490e
+R
+"static/styles.dcb0d760909ddaf7.css,5\8\582e539a780e11903c7aa2161c66643a29a4fc44
+O
+static/main.1580c075c0b0b2a0.js,6\3\63ee74b034482e80c541fa68bf0aeaac4def51cf
+K
+static/3rdpartylicenses.txt,5\3\53a2475d0e90a249f1b173771b4b1b787300aa3c
+D
+templates/index.html,f\6\f69b8ce2e31684ae06f1b3e84821e07e3dfddb2f
