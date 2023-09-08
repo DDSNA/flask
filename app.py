@@ -26,12 +26,17 @@ config = {
     "CACHE_DEFAULT_TIMEOUT": 900
 }
 
+# SECRETS AREA
+up_db = app.config.get('UP_DB')
+up_key = app.config.get('UP_KEY')
+# SECRETS AREA
+
 app.config.from_mapping(config)
 cache = flask_caching.Cache(app)
 
 
 # only creating this here because of security reasons
-connection_string = "mysql+mysqldb://pythonapp:BadPass2023@containers-us-west-174.railway.app:7822/railway"
+connection_string = f"mysql+mysqldb://pythonapp:{__up_key}@containers-us-west-174.railway.app:7822/{__up_db}"
 engine = create_engine(connection_string, pool_recycle=360, echo=True)
 
 # logging
