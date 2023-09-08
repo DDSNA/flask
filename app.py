@@ -31,7 +31,7 @@ cache = flask_caching.Cache(app)
 
 
 # only creating this here because of security reasons
-connection_string = "mysql+mysqldb://pythonapp:@z$b&+A#9Cm^Ly-s)x{=@containers-us-west-174.railway.app:7822/restricted_schema"
+connection_string = "mysql+mysqldb://pythonapp:PNjCiTFcuVEaqVGb2EhWsWcpQe@containers-us-west-174.railway.app:7822/restricted_schema"
 engine = create_engine(connection_string, pool_recycle=600, echo=True)
 
 # logging
