@@ -3,11 +3,7 @@ from sqlalchemy import create_engine, MetaData, Table, select
 from sqlalchemy.orm import sessionmaker
 import json
 
-from app import app
-
-__frontend_db = app.config.get('FRONTEND_DB')
-__frontend_key = app.config.get('FRONTEND_KEY')
-def historical_call():
+def historical_call(__frontend_key,__frontend_db):
     connection_string_view = f"mysql+mysqldb://frontend_tabledisplay:{__frontend_key}@containers-us-west-174.railway.app:7822/{__frontend_db}"
     engine_2 = create_engine(connection_string_view, echo=True)
     metadata = MetaData()

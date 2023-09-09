@@ -27,8 +27,12 @@ config = {
 }
 
 # SECRETS AREA
-up_db = app.config.get('UP_DB')
-up_key = app.config.get('UP_KEY')
+__up_db = app.config.get('UP_DB')
+__up_key = app.config.get('UP_KEY')
+global __frontend_db
+global __frontend_key
+__frontend_db = app.config.get('FRONTEND_DB')
+__frontend_key = app.config.get('FRONTEND_KEY')
 # SECRETS AREA
 
 app.config.from_mapping(config)
@@ -139,7 +143,7 @@ def call_db_and_fuzz():
 @cache.cached(timeout=600)
 def show_historical_jsons():
     try:
-        historical_data = historical_call()
+        historical_data = historical_call(__frontend_key,__frontend_db)
         print(historical_data)
         return render_template('historical_datapage.html', data=historical_data)
     except Exception as e:
