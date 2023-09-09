@@ -29,8 +29,6 @@ config = {
 # SECRETS AREA
 __up_db = app.config.get('UP_DB')
 __up_key = app.config.get('UP_KEY')
-global __frontend_db
-global __frontend_key
 __frontend_db = app.config.get('FRONTEND_DB')
 __frontend_key = app.config.get('FRONTEND_KEY')
 # SECRETS AREA
