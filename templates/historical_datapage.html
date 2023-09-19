@@ -1,9 +1,48 @@
 <!DOCTYPE html lang="en">
 <head>
     <title>Historical JSON table</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <meta charset="utf-8">
 </head>
+<style>
+    .historical-table{
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    }
+    .historical-table thead tr{
+        background-color: #009879;
+        color: #ffffff;
+        text-align: center;
+    }
+    .historical-table th,
+    .historical-table td {
+        padding: 12px 15px;
+    }
+    .historical-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+    .historical-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+    .historical-table tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+
+    .historical-table tbody tr:focus {
+        font-weight: bold;
+        color: #009879;
+    }
+</style>
+<!-- Needs to be checked: how active/focused is selected-->
 <body>
-<table border="solid">
+<table class="historical-table" border="solid" aria-describedby="A table">
     <thead>
         <tr>
             <th>Index no.</th>
@@ -13,7 +52,7 @@
     </thead>
     <tbody>
         {% for row in data %}
-            <tr>
+            <tr class="historical-table-row">
                 <td>{{ row.index }}</td>
                 <td>{{ row.timestamp }}</td>
                 <td>{{ row.data }}</td>
@@ -23,3 +62,4 @@
 </table>
 </body>
 </html>
+
