@@ -138,7 +138,7 @@ def call_db_and_fuzz():
 
 
 @app.route('/historical_table', methods=['GET'])
-@cache.cached(timeout=600)
+@cache.cached(timeout=6000)
 def show_historical_jsons():
     try:
         historical_data = historical_call(__frontend_key,__frontend_db)

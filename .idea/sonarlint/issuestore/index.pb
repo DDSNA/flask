@@ -33,3 +33,19 @@ J
 :
 
 Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4
+j
+:static/assets/data-storage-database-server-svgrepo-com.svg,6\e\6e85d39cac3feb5208cbf4d07d13dba904156924
+R
+"flaskr/temp-data/sourcefordata.txt,3\c\3cd4d601c754dd083d1c8ad8f8208566988bd61e
+A
+tests/test_app.py,5\d\5d67b839567bfb64797a0f0a7e916f379a636b5c
+R
+"static/runtime.4c7a7ef8ff65fe77.js,1\4\14afdc71dba9d6fd346e671030ec12e769f3a19d
+;
+__init__.py,6\0\60ad4f3d2e9b04a9b0a0bb97ab6a8a4c018b785e
+T
+$static/polyfills.9ca428bcdd4c7190.js,e\f\efabf954d7ded384706b3327986e97c2c5e56021
+x
+Hstatic/assets/data-chart-trade-infographic-element-graph-svgrepo-com.svg,4\c\4c2d571fe7ece540719e3ba908c6ac9b5ee9ac60
+R
+"templates/historical_datapage.html,4\7\470023c575b6b6ae6d463a03e6883e8fb87aec79
