@@ -42,6 +42,15 @@
 </style>
 <!-- Needs to be checked: how active/focused is selected-->
 <body>
+<div>
+    <h2 id="heading_table_explanation">Short explanation</h2>
+        <p>Briefly, there should be two tables in this page:
+        <ul>
+    <li>a table containing all the data gathered from the fuzzworks API, filtered for duplicates and neatly arranged as jsons.</li>
+    <li>a table with lookup information</li>
+        </ul>
+        </p>
+</div>
 <table class="historical-table" border="solid" aria-describedby="A table">
     <thead>
         <tr>
@@ -52,7 +61,7 @@
     </thead>
     <tbody>
         {% for row in data %}
-            <tr>
+            <tr class="historical-table-row">
                 <td>{{ row.index }}</td>
                 <td>{{ row.timestamp }}</td>
                 <td>{{ row.data }}</td>
