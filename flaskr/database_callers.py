@@ -18,7 +18,6 @@ def historical_call(__frontend_key,__frontend_db):
             _rows = _results.fetchall()
             _results_dictionary = [{'data': json.dumps(row[1]), 'timestamp': row[2], 'index':row[0]} for row in _rows]
             conn_2.close()
-            print(_results_dictionary)
         except Exception as e:
             print("Whoa! Error! This is th error itself: ", e)
             import traceback
