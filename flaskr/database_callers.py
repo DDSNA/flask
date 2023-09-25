@@ -9,7 +9,7 @@ def historical_call(__frontend_key,__frontend_db):
     metadata = MetaData()
     Session = sessionmaker(bind=engine_2)
     session = Session()
-    view_table = Table("json_table_backup", metadata, autoload_with=engine_2)
+    view_table = Table("json_table", metadata, autoload_with=engine_2)
     with engine_2.connect() as conn_2:
         get_view_data = select(view_table)
         print(get_view_data)
