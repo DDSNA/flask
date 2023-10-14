@@ -23,7 +23,7 @@ def historical_call(__frontend_key,__frontend_db,__url_db,__port_db):
             _results_dictionary = [{'data': json.dumps(row[1]), 'timestamp': row[2], 'index':row[0]} for row in _rows]
             conn_2.close()
         except Exception as e:
-            print("Whoa! Error! This is th error itself: ", e)
+            print("Whoa! Error! This is the error itself: ", e)
             import traceback
             traceback.print_exc()
             conn_2.close()
