@@ -9,6 +9,10 @@ class Config:
     FRONTEND_KEY = os.getenv("FRONTEND_KEY", "no-frontend-key")
     UP_DB = os.getenv("UP_DB", "no-hist-db")
     FRONTEND_DB = os.getenv("FRONTEND_DB", "no-frontend-db")
+    URL_DB = os.getenv("MYSQLHOST", "no-url-db")
+    PORT_DB = os.getenv("MYSQLPORT", "no-port-db")
+
+
 class ProductionConfig(Config):
     pass
 

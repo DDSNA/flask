@@ -21,7 +21,7 @@ app.config.from_object(env_config)
 # config
 
 config = {
-    "DEBUG": True,          # some Flask specific configs
+    "DEBUG": True,  # some Flask specific configs
     "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
     "CACHE_DEFAULT_TIMEOUT": 900
 }
@@ -31,14 +31,15 @@ __up_db = app.config.get('UP_DB')
 __up_key = app.config.get('UP_KEY')
 __frontend_db = app.config.get('FRONTEND_DB')
 __frontend_key = app.config.get('FRONTEND_KEY')
+__url_db = app.config.get('URL_DB')
+__port_db = app.config.get('PORT_DB')
 # SECRETS AREA
 
 app.config.from_mapping(config)
 cache = flask_caching.Cache(app)
 
-
 # only creating this here because of security reasons
-connection_string = f"mysql+mysqldb://pythonapp:{__up_key}@containers-us-west-174.railway.app:7822/{__up_db}"
+connection_string = f"mysql+mysqldb://pythonapp:{__up_key}@{__url_db}:{__port_db}/{__up_db}"
 engine = create_engine(connection_string, pool_recycle=360, echo=True)
 
 # logging
@@ -70,7 +71,6 @@ def secret_key():
 @app.route('/call-fuzz')
 @cache.cached(timeout=600)
 def call_fuzz():
-
     api_url = (
         "https://market.fuzzwork.co.uk/aggregates/?region=60008494&types=2268,2305,2267,2288,2287,2307,2272,2309,2073,2310,2270,2306,2286,2311,2308,2393,2396,3779,2401,2390,2397,2392,3683,2389,2399,2395,2398,9828,2400,3645,2329,3828,9836,9832,44,3693,15317,3725,3689,2327,9842,2463,2317,2321,3695,9830,3697,9838,2312,3691,2319,9840,3775,2328,2358,2345,2344,2367,17392,2348,9834,2366,2361,17898,2360,2354,2352,9846,9848,2351,2349,2346,12836,17136,28974,2867,2868,2869,2870,2871,2872,2875,2876%22")
     response = requests.get(api_url)
@@ -141,12 +141,11 @@ def call_db_and_fuzz():
 @cache.cached(timeout=6000)
 def show_historical_jsons():
     try:
-        historical_data = historical_call(__frontend_key,__frontend_db)
+        historical_data = historical_call(__frontend_key, __frontend_db, __url_db, __port_db)
         print(historical_data)
         return render_template('historical_datapage.html', data=historical_data)
     except Exception as e:
         print('Got this error lol:', e)
-
 
 
 # redirect for mismatch between / and /static

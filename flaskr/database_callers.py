@@ -3,8 +3,12 @@ from sqlalchemy import create_engine, MetaData, Table, select
 from sqlalchemy.orm import sessionmaker
 import json
 
-def historical_call(__frontend_key,__frontend_db):
-    connection_string_view = f"mysql+mysqldb://frontend_tabledisplay:{__frontend_key}@containers-us-west-174.railway.app:7822/{__frontend_db}"
+def historical_call(__frontend_key,__frontend_db,__url_db,__port_db):
+    """This function is used to call the historical data from the database.
+    It is used in the /historical route.
+    :return: A list of dictionaries with the data and timestamp.
+    """
+    connection_string_view = f"mysql+mysqldb://frontend_tabledisplay:{__frontend_key}@c{__url_db}:{__port_db}/{__frontend_db}"
     engine_2 = create_engine(connection_string_view, echo=True)
     metadata = MetaData()
     Session = sessionmaker(bind=engine_2)
