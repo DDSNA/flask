@@ -141,7 +141,7 @@ def call_db_and_fuzz():
 @cache.cached(timeout=6000)
 def show_historical_jsons():
     try:
-        historical_data = historical_call(__frontend_key,__frontend_db,__url_db,__port_db)
+        historical_data = historical_call(__frontend_key, __frontend_db, __url_db, __port_db)
         print(historical_data)
         return render_template('historical_datapage.html', data=historical_data)
     except Exception as e:
