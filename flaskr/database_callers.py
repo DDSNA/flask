@@ -28,3 +28,28 @@ def historical_call(__frontend_key,__frontend_db,__url_db,__port_db):
             traceback.print_exc()
             conn_2.close()
         return _results_dictionary
+
+def lookup_call(__frontend_key, __frontend_db, __url_db, __port_db):
+    """This function is used to call the lookup database table.
+    It is used in the /lookup route.
+    """
+    connection_string_view = f"mysql+mysqldb://frontend_user:{__frontend_key}@{__url_db}:{__port_db}/{__frontend_db}"
+    engine_3 = create_engine(connection_string_view, echo=True)
+    metadata = MetaData()
+    Session = sessionmaker(bind=engine_3)
+    session = Session()
+    view_table = Table("lookup_table", metadata, autoload_with=engine_3)
+    with engine_3.connect() as conn_3:
+        get_view_data = select(view_table)
+        print(get_view_data)
+        try:
+            _results = session.execute(get_view_data)
+            _rows = _results.fetchall()
+            _results_dictionary_lookup_table = [{'data': json.dumps(row[1]), 'timestamp': row[2], 'index': row[0]} for row in _rows]
+            conn_3.close()
+        except Exception as e:
+            print("Whoa! Error! This is the error itself: ", e)
+            import traceback
+            traceback.print_exc()
+            conn_3.close()
+        return _results_dictionary_lookup_table

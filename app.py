@@ -10,7 +10,7 @@ import flask_caching
 from sqlalchemy import create_engine, insert, MetaData, Table, select
 from sqlalchemy.orm import sessionmaker
 
-from flaskr.database_callers import historical_call
+from flaskr.database_callers import historical_call, lookup_call
 
 # security import
 
@@ -144,6 +144,17 @@ def show_historical_jsons():
         historical_data = historical_call(__frontend_key, __frontend_db, __url_db, __port_db)
         print(historical_data)
         return render_template('historical_datapage.html', data=historical_data)
+    except Exception as e:
+        print('Got this error lol:', e)
+
+
+@app.route('/lookup_table', methods=['GET'])
+@cache.cached(timeout=6000)
+def lookup_json():
+    try:
+        lookup_data = lookup_call(__frontend_key, __frontend_db, __url_db, __port_db)
+        print(lookup_data)
+        return render_template('lookup_table.html', data=lookup_data)
     except Exception as e:
         print('Got this error lol:', e)
 
