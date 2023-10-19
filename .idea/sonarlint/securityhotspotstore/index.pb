@@ -49,3 +49,5 @@ R
 "templates/historical_datapage.html,4\7\470023c575b6b6ae6d463a03e6883e8fb87aec79
 x
 Hstatic/assets/data-chart-trade-infographic-element-graph-svgrepo-com.svg,4\c\4c2d571fe7ece540719e3ba908c6ac9b5ee9ac60
+K
+templates/lookup_table.html,3\d\3d8142de9ddabc9438f8c1ffbd512278972968ea
